@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  gatechain_node:
+    image: gatechain:1.1.2
+    build:
+      context: ./
+    network_mode: host
+    volumes:
+      - gated_volume:/root/.gated/
+      - gatecli_volume:/root/.gatecli/
+    environment:
+      - GATEPASS
+    command: ["/bin/bash", "./run_node.sh"]
+  gatechain_evm_rpc:
+    image: gatechain:1.1.2
+    network_mode: host
+    volumes:
+      - gated_volume:/root/.gated/
+      - gatecli_volume:/root/.gatecli/
+    command: ["/bin/bash", "./run_evm_rpc.sh"]
+    depends_on:
+      - gatechain_node
+
+volumes:
+  gated_volume:
+  gatecli_volume:
