@@ -18,7 +18,7 @@ To terminate the node with all data make `docker-compose down -v -t1`. It is nec
 
 To run a local chain with EVM RPC just type `GATEPASS=12345678 CHAIN='other' docker-compose -f docker-compose-local.yaml up --build`
 
-Now you can send requests to this EVM RPC. The request body is:
+Now you can send requests to the corresponding EVM RPC. The request body is:
 
 `curl -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":[metod],"params":[params],"id":[id]}' URL:6060`
 
