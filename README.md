@@ -20,7 +20,7 @@ To run a local chain with EVM RPC just type `GATEPASS=12345678 CHAIN='other' doc
 
 Now you can send requests to the corresponding EVM RPC. The request body is:
 
-`curl -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":[metod],"params":[params],"id":[id]}' URL:6060`
+`curl -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":[method],"params":[params],"id":[id]}' URL:6060`
 
 For example:
 
