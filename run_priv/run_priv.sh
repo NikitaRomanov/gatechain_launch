@@ -9,8 +9,6 @@ ls ${GATEHOME}
 
 cat ${GATEHOME}/val_log.txt
 
-
-#validator_address=$(jq '.address' ${GATEHOME}/val_log.json)
 validator_address=$(grep 'address: ' ${GATEHOME}/val_log.txt)
 echo ${validator_address:11}
 
