@@ -14,9 +14,11 @@ EVM RPC is already running on port 6060.
 
 To terminate the node with all data make `docker-compose down -v -t1`. It is necessary to remove all unused volumes.
 
+## Run GateChain local chain
+
 To run a local chain with EVM RPC just type `GATEPASS=12345678 CHAIN='other' docker-compose -f docker-compose-local.yaml up --build`
 
-Now you cn send requests to this EVM RPC. The request body is:
+Now you can send requests to this EVM RPC. The request body is:
 
 `curl -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":[metod],"params":[params],"id":[id]}' URL:6060`
 
