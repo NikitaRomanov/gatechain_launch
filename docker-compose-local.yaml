@@ -10,6 +10,7 @@ services:
                - gatecli_volume:/root/.gatecli/
             environment:
                - GATEPASS
+               - CHAIN
             command: ["/bin/bash", "./run_priv.sh"]
         gatechain_evm_rpc:
             image: gatechain:1.1.2
@@ -17,6 +18,8 @@ services:
             volumes:
                - gated_volume:/root/.gated/
                - gatecli_volume:/root/.gatecli/
+            environment:
+               - CHAIN
             command: ["/bin/bash", "./run_evm_rpc.sh"]
             depends_on:
                - private_chain 
