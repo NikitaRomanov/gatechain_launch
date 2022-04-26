@@ -16,7 +16,9 @@ To terminate the node with all data make `docker-compose down -v -t1`. It is nec
 
 ## Run GateChain local chain
 
-To run a local chain with EVM RPC just type `GATEPASS=12345678 CHAIN='other' docker-compose -f docker-compose-local.yaml up --build`
+To run a local chain with EVM RPC just type `GATEPASS=12345678 CHAIN='testing-1' docker-compose -f docker-compose-local.yaml up --build`
+
+You can assign another name to local chain varying parameter CHAIN. Keep in mind that other name must satisfy pattern `[a-z][A-Z]-[0-9]`. For example: `testing-2`, `testchain-9`, etc.
 
 Now you can send requests to the corresponding EVM RPC. The request body is:
 
