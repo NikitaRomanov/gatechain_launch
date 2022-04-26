@@ -2,7 +2,8 @@
 
 echo ${GATEPASS} | tee ${GATEHOME}/acc_pass.txt
 
-gated init --chain-id=testing-1 private
+echo ${CHAIN}
+gated init --chain-id=${CHAIN} private
 gatecli account create validator < ${GATEHOME}/acc_pass.txt &> ${GATEHOME}/val_log.txt
 
 ls ${GATEHOME}

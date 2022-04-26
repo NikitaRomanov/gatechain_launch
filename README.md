@@ -24,10 +24,12 @@ Now you can send requests to the corresponding EVM RPC. The request body is:
 
 For example:
 
-`curl -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"web3_sha3","params":["0x68656c6c6f20776f726c64"],"id":64}' http://ec2-3-17-154-48.us-east-2.compute.amazona ws.com:6060`
+`curl -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"web3_sha3","params":["0x68656c6c6f20776f726c64"],"id":64}' http:127.0.0.1:6060`
 
 The result will be:
 
 `{"jsonrpc":"2.0","id":64,"result":"0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad"}`
 
 The list of all available methods is here http://www.gatechain.io/docs/en/developers/json-rpc/
+
+
