@@ -32,4 +32,7 @@ The result will be:
 
 The list of all available methods is here http://www.gatechain.io/docs/en/developers/json-rpc/
 
+After finishing node work it is highly recommended to clear volumes by typing two commnds:
+1. `docker rm -f $(docker ps -a -q)`
+2. `docker volume rm $(docker volume ls -q)`
 
