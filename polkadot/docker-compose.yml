@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  polkadot:
+    container_name: polkadot
+    image: parity/polkadot:v0.9.10
+    networks:
+      - polka
+    ports:
+      - 30333:30333 # p2p port
+      - 9933:9933 # rpc port
+      - 9944:9944 # ws port
+    volumes:
+      - polkadot_volume:/polkadot
+    command: [
+        "--name", "PolkaDocker",
+        "--chain", "westend",
+        "--ws-external",
+        "--rpc-external",
+        "--rpc-cors", "all",
+        "--unsafe-pruning",
+        "--pruning", "1000"
+    ]
+
+  polkadotui:
+    container_name: polkadotui
+    image: jacogr/polkadot-js-apps
+    environment:
+      - WS_URL=ws://polkadot:9944
+    networks:
+      - polka
+    ports:
+      - 80:80
+
+networks:
+  polka:
+    driver: bridge
+
+volumes:
+  polkadot_volume:

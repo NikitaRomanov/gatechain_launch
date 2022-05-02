@@ -3,7 +3,7 @@ services:
   gatechain_node:
     image: gatechain:1.1.2
     build:
-      context: ./
+      context: ..
     network_mode: host
     volumes:
       - gated_volume:/root/.gated/
