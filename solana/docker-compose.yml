@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  solana:
+    container_name: solana
+    image: solanalabs/solana:v1.11.1
+    privileged: true
+    network_mode: host
+    environment:
+      - NDEBUG=1
+    ports:
+      - 8000-8013:8000-8013/udp
+      - 8000-8013:8000-8013/tcp
+      - 8899:8899/tcp
+      - 8900:8900/tcp
+    volumes:
+      - /mnt/solana/docker:/usr/bin/config/
+      - ./solana-run-validator.sh:/usr/bin/solana-run-validator.sh
+    entrypoint: ["bash", "/usr/bin/solana-run-validator.sh"]
