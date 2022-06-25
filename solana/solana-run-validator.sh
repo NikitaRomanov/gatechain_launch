@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 #
-# Run a minimal Solana cluster.  Ctrl-C to exit.
-#
-# Before running this script ensure standard Solana programs are available
-# in the PATH, or that `cargo build` ran successfully
+# Run a Solana node.  Ctrl-C to exit.
 #
 set -e
 
@@ -72,6 +69,7 @@ abort() {
 }
 trap abort INT TERM EXIT
 
+# devnet
 args=(
   --identity "$validator_identity"
   --vote-account "$validator_vote_account"
@@ -96,6 +94,61 @@ args=(
   --expected-genesis-hash EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG
   --wal-recovery-mode skip_any_corrupted_record
 )
+
+: '
+# testnet
+args=(
+  --identity "$validator_identity"
+  --vote-account "$validator_vote_account"
+  --ledger "$ledgerDir"
+  --limit-ledger-size
+  --known-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on
+  --known-validator dDzy5SR3AXdYWVqbDEkVFdvSPCtS9ihF5kJkHCtXoFs
+  --known-validator Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN
+  --known-validator eoKpUABi59aT4rR9HGS3LcMecfut9x7zJyodWWP43YQ
+  --known-validator 9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv
+  --only-known-rpc
+  --full-rpc-api
+  --rpc-port 8899
+  --dynamic-port-range 8000-8013
+  --log -
+  --enable-rpc-transaction-history
+  --init-complete-file "$dataDir"/init-completed
+  --entrypoint entrypoint.testnet.solana.com:8001
+  --entrypoint entrypoint2.testnet.solana.com:8001
+  --entrypoint entrypoint3.testnet.solana.com:8001
+  --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY
+  --wal-recovery-mode skip_any_corrupted_record
+)
+
+# mainnet
+args=(
+  --identity "$validator_identity"
+  --vote-account "$validator_vote_account"
+  --ledger "$ledgerDir"
+  --limit-ledger-size
+  --known-validator 7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2
+  --known-validator GdnSyH3YtwcxFvQrVVJMm1JhTS4QVX7MFsX56uJLUfiZ
+  --known-validator DE1bawNcRJB9rVm3buyMVfr8mBEoyyu73NBovf2oXJsJ
+  --known-validator CakcnaRDHka2gXyfbEd2d3xsvkJkqsLw2akB3zsN1D2S
+  --only-known-rpc
+  --full-rpc-api
+  --rpc-port 8899
+  --private-rpc
+  --dynamic-port-range 8000-8013
+  --log -
+  --enable-rpc-transaction-history
+  --init-complete-file "$dataDir"/init-completed
+  --entrypoint entrypoint.mainnet-beta.solana.com:8001
+  --entrypoint entrypoint2.mainnet-beta.solana.com:8001
+  --entrypoint entrypoint3.mainnet-beta.solana.com:8001
+  --entrypoint entrypoint4.mainnet-beta.solana.com:8001
+  --entrypoint entrypoint5.mainnet-beta.solana.com:8001
+  --expected-genesis-hash 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d
+  --wal-recovery-mode skip_any_corrupted_record
+)
+'
+
 # shellcheck disable=SC2086
 solana-validator "${args[@]}" $SOLANA_RUN_SH_VALIDATOR_ARGS &
 validator=$!
