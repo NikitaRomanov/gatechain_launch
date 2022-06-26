@@ -8,6 +8,7 @@ services:
     network_mode: host
     environment:
       - NDEBUG=1
+      - SOLANA_CLUSTER=devnet
     ports:
       - 8000-8013:8000-8013/udp
       - 8000-8013:8000-8013/tcp
@@ -16,4 +17,8 @@ services:
     volumes:
       - /mnt/solana/docker:/usr/bin/config/
       - ./solana-run-validator.sh:/usr/bin/solana-run-validator.sh
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
     entrypoint: ["bash", "/usr/bin/solana-run-validator.sh"]
